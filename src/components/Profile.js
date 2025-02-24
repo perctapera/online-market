@@ -7,7 +7,7 @@ function Profile({ user, setUser }) {
     const [updatedUser, setUpdatedUser] = useState(user);
     const [profilePic, setProfilePic] = useState(user.picture || "/default-avatar.png");
 
-    // Save profile data to localStorage
+    // Save profile data to localStorage!!!!!!!
     const handleSaveProfile = () => {
         localStorage.setItem("userProfile", JSON.stringify(updatedUser));
         setUser(updatedUser);

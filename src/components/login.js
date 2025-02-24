@@ -1,6 +1,6 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import "../styles.css"; // Import global styles
+import "../styles.css"; // Import global styles....
 
 function Login({ setUser }) {
     const onSuccess = (credentialResponse) => {
