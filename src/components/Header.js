@@ -25,7 +25,6 @@ function Header({ user, setUser, setView }) {
         googleLogout();
         setUser(null);
         localStorage.removeItem("userProfile"); // Clear profile data on logout
-        setView("products"); // close profile when exit
     };
 
     return (
