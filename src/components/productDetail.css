@@ -1,0 +1,30 @@
+/* productDetail.css */
+
+.product-detail-container {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #007bff;
+    cursor: pointer;
+}
+
+.back-icon {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.product-detail-image {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
