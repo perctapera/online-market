@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import StoreLogo from '../images/online-shop.png';
 import LoginButton from "./login";
 import "../styles.css"; // Import global styles
+import { FaShoppingCart } from "react-icons/fa";
 
 const clientId = "709514609698-9er2a02tiodh6gudshi2ahlvklhjq0ok.apps.googleusercontent.com";
 
-function Header({ user, setUser, setView }) {
+function Header({ user, setUser, cartItems, setCartItems }) {
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -24,6 +25,7 @@ function Header({ user, setUser, setView }) {
     const handleLogout = () => {
         googleLogout();
         setUser(null);
+        setCartItems([]); //clear cart when logout
         localStorage.removeItem("userProfile"); // Clear profile data on logout
     };
 
@@ -38,8 +40,16 @@ function Header({ user, setUser, setView }) {
             />
             <h1 onClick={() => navigate("/")} style={{ cursor: "pointer" }}>Online Marketing</h1>
             
-            <div className="login-button-container">
-                {/* ✅ Show login button if no user, otherwise show profile */}
+                <div className="login-button-container">
+                    {/* ✅ Show login button if no user, otherwise show profile */}
+                    <div className="cart-icon" onClick={() => navigate("/cart")} style={{ cursor: "pointer", marginRight: "16px" }}>
+                        <FaShoppingCart size={24} />
+                        {cartItems?.length > 0 && (
+                            <span className="cart-count">
+                                {cartItems.reduce((sum, item) => sum + item.quantity, 0)}
+                            </span>
+                        )}
+                    </div>
                 {user ? (
                     <div className="user-info">
                         <img src={user.picture || "/default-avatar.png"} alt="Profile" className="profile-pic-small" />
@@ -52,6 +62,7 @@ function Header({ user, setUser, setView }) {
                     <LoginButton setUser={setUser} />
                 )}
             </div>
+            
         </header>
     );
 }

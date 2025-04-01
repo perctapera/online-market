@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./products.css";
 import { categories, products } from "../data/products";
 
-function Products() {
+function Products({ cartItems, addToCart, updateQuantity, removeFromCart }) {
+
     const [selectedCategory, setSelectedCategory] = useState("All Products");
     const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
@@ -64,6 +65,33 @@ function Products() {
                                 />
                                 <h3>{product.name}</h3>
                                 <p>{product.price}</p>
+                                {(() => {
+                                    const inCart = cartItems.find(item => item.id === product.id);
+
+                                    if (inCart) {
+                                        return (
+                                            <div className="quantity-controller">
+                                                <button
+                                                    onClick={() =>
+                                                        inCart.quantity > 1
+                                                            ? updateQuantity(product.id, inCart.quantity - 1)
+                                                            : removeFromCart(product.id)
+                                                    }
+                                                >
+                                                    −
+                                                </button>
+                                                <span>{inCart.quantity}</span>
+                                                <button onClick={() => updateQuantity(product.id, inCart.quantity + 1)}>+</button>
+                                            </div>
+                                        );
+                                    } else {
+                                        return (
+                                            <button onClick={() => addToCart(product)} className="add-to-cart-btn">
+                                                +
+                                            </button>
+                                        );
+                                    }
+                                })()}
                             </div>
                         ))
                     ) : (
