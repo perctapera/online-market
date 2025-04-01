@@ -2,12 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./products.css";
 import { categories, products } from "../data/products";
+import { useCart } from "./CartContext";
 
-function Products({ cartItems, addToCart, updateQuantity, removeFromCart }) {
-
+function Products() {
     const [selectedCategory, setSelectedCategory] = useState("All Products");
     const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate();
+
+    // ✅ Get cart functions from useCart
+    const { cartItems, addToCart, updateQuantity, removeFromCart } = useCart(); 
 
     // Filtering logic for category and search term
     const filteredProducts = products.filter((product) => {
@@ -64,7 +67,7 @@ function Products({ cartItems, addToCart, updateQuantity, removeFromCart }) {
                                     style={{ cursor: "pointer" }}
                                 />
                                 <h3>{product.name}</h3>
-                                <p>{product.price}</p>
+                                <p>${product.price.toFixed(2)}</p>
                                 {(() => {
                                     const inCart = cartItems.find(item => item.id === product.id);
 

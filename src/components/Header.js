@@ -6,12 +6,17 @@ import StoreLogo from '../images/online-shop.png';
 import LoginButton from "./login";
 import "../styles.css"; // Import global styles
 import { FaShoppingCart } from "react-icons/fa";
+import { useCart } from './CartContext';
 
 const clientId = "709514609698-9er2a02tiodh6gudshi2ahlvklhjq0ok.apps.googleusercontent.com";
 
-function Header({ user, setUser, cartItems, setCartItems }) {
+function Header({ user, setUser }) {
     const navigate = useNavigate();
-    
+    const { cartItems } = useCart();
+
+    // Calculate total items in cart
+    const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
     useEffect(() => {
         function start() {
             gapi.client.init({
@@ -25,7 +30,6 @@ function Header({ user, setUser, cartItems, setCartItems }) {
     const handleLogout = () => {
         googleLogout();
         setUser(null);
-        setCartItems([]); //clear cart when logout
         localStorage.removeItem("userProfile"); // Clear profile data on logout
     };
 
@@ -44,10 +48,8 @@ function Header({ user, setUser, cartItems, setCartItems }) {
                     {/* ✅ Show login button if no user, otherwise show profile */}
                     <div className="cart-icon" onClick={() => navigate("/cart")} style={{ cursor: "pointer", marginRight: "16px" }}>
                         <FaShoppingCart size={24} />
-                        {cartItems?.length > 0 && (
-                            <span className="cart-count">
-                                {cartItems.reduce((sum, item) => sum + item.quantity, 0)}
-                            </span>
+                        {totalItems > 0 && (
+                            <span className="cart-count">{totalItems}</span>
                         )}
                     </div>
                 {user ? (
