@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./products.css";
 import { categories, products } from "../data/products";
 import { useCart } from "./CartContext";
+import Footer from "./Footer";
 
 function Products() {
     const [selectedCategory, setSelectedCategory] = useState("All Products");
@@ -25,6 +26,7 @@ function Products() {
     };
 
     return (
+        <>
         <div className="products-page">
             <div className="sidebar">
                 <h3>Categories</h3>
@@ -79,7 +81,7 @@ function Products() {
                                                             : removeFromCart(product.id)
                                                     }
                                                 >
-                                                    −
+                                                    -
                                                 </button>
                                                 <span>{inCart.quantity}</span>
                                                 <button
@@ -107,6 +109,8 @@ function Products() {
                 </div>
             </div>
         </div>
+        <Footer />
+        </>
     );
 }
 

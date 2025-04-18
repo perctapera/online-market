@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useCart } from "./CartContext";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 import "./cartPage.css";
 
 function CartPage() {
@@ -51,6 +52,7 @@ function CartPage() {
     };
 
     return (
+        <>
         <div className="cart-page">
             <h2>Your Shopping Cart</h2>
             
@@ -168,6 +170,8 @@ function CartPage() {
                 </>
             )}
         </div>
+        <Footer />
+        </>
     );
 }
 

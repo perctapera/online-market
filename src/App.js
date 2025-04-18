@@ -28,10 +28,10 @@ function App() {
                 <Header user={user} setUser={setUser} />
                 <Routes>
                     <Route path="/" element={<Products />} />
-<Route path="/product/:id" element={<ProductDetail />} />
-<Route path="/profile" element={user ? <Profile user={user} setUser={setUser} /> : <h2>Please log in</h2>} />
-<Route path="/cart" element={<CartPage />} />
-<Route path="/order-confirmation" element={<OrderConfirmation />} />
+                    <Route path="/product/:id" element={<ProductDetail />} />
+                    <Route path="/profile" element={user ? <Profile user={user} setUser={setUser} /> : <h2>Please log in</h2>} />
+                    <Route path="/cart" element={<CartPage />} />
+                    <Route path="/order-confirmation" element={<OrderConfirmation />} />
                 </Routes>
             </div>
         </Router>
