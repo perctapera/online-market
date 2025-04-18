@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { gapi } from 'gapi-script';
 import { googleLogout } from "@react-oauth/google";
 import { useNavigate } from 'react-router-dom';
@@ -7,12 +7,15 @@ import LoginButton from "./login";
 import "../styles.css"; // Import global styles
 import { FaShoppingCart } from "react-icons/fa";
 import { useCart } from './CartContext';
+import ProfilePopup from "./ProfilePopup";
+
 
 const clientId = "709514609698-9er2a02tiodh6gudshi2ahlvklhjq0ok.apps.googleusercontent.com";
 
 function Header({ user, setUser }) {
     const navigate = useNavigate();
     const { cartItems } = useCart();
+    const [showPopup, setShowPopup] = useState(false);
 
     // Calculate total items in cart
     const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
@@ -34,6 +37,7 @@ function Header({ user, setUser }) {
     };
 
     return (
+        <>
         <header className="header-component">
             <img 
                 src={StoreLogo} 
@@ -52,20 +56,36 @@ function Header({ user, setUser }) {
                             <span className="cart-count">{totalItems}</span>
                         )}
                     </div>
-                {user ? (
-                    <div className="user-info">
-                        <img src={user.picture || "/default-avatar.png"} alt="Profile" className="profile-pic-small" />
-                        <span onClick={() => navigate("/profile")} style={{ cursor: "pointer" }}>
-                            {user.name}
-                        </span>
-                        <button onClick={handleLogout} className="logout-btn">Logout</button>
-                    </div>
+                    {user ? (
+                        <div className="user-info">
+                            <img
+                                src={user.picture || "/default-avatar.png"}
+                                alt="Profile"
+                                className="profile-pic-small"
+                                onClick={() => setShowPopup(prev => !prev)}
+                                style={{ cursor: "pointer" }}
+                            />
+                            <div className="username-text">
+                                {user.name}
+                            </div>
+                        </div>
                 ) : (
                     <LoginButton setUser={setUser} />
                 )}
             </div>
             
         </header>
+        {showPopup && user && (
+        <ProfilePopup
+          onNavigate={(path) => {
+            navigate(path);
+            setShowPopup(false);
+          }}
+          onLogout={handleLogout}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
+        </>
     );
 }
 

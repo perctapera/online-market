@@ -1,0 +1,42 @@
+/* src/components/profilePopup.css */
+.profile-popup {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    padding: 10px;
+    z-index: 9999;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+.profile-popup button {
+    padding: 8px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    border-radius: 6px;
+}
+
+.profile-popup button:hover {
+    background-color: #f0f0f0;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);  
+    z-index: 9998;
+    transition: background-color 0.3s ease;
+  }

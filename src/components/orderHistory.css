@@ -1,0 +1,30 @@
+.order-history-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .order-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+  }
+  
+  .order-card h3 {
+    margin-bottom: 10px;
+    color: #007bff;
+  }
+  
+  .order-card ul {
+    padding-left: 20px;
+  }
+  
+  .order-card li {
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+  
