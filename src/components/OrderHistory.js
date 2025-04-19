@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "./Footer";
 import "./orderHistory.css";
 
 function OrderHistory() {
@@ -12,7 +13,6 @@ function OrderHistory() {
     const checkUserChange = () => {
       const user = JSON.parse(localStorage.getItem("userProfile"));
       if (!user) {
-        // 可选：阻止重复 alert
         if (prevUserEmail !== null) {
           alert("Please login to view your order history.");
           navigate("/");
@@ -38,6 +38,7 @@ function OrderHistory() {
   }, [navigate]);
 
   return (
+    <>
     <div className="order-history-container">
       <h2>Order History</h2>
       {orders.length === 0 ? (
@@ -60,6 +61,8 @@ function OrderHistory() {
         ))
       )}
     </div>
+    <Footer />
+    </>
   );
 }
 

@@ -30,6 +30,13 @@ function Header({ user, setUser }) {
         gapi.load('client:auth2', start);
     }, []);
 
+    useEffect(() => {
+        if (user) {
+          setShowPopup(false); 
+        }
+      }, [user]);
+      
+
     const handleLogout = () => {
         googleLogout();
         setUser(null);

@@ -40,3 +40,16 @@
     z-index: 9998;
     transition: background-color 0.3s ease;
   }
+
+.profile-popup .logout-btn {
+    color: #dc3545;
+    font-weight: 600;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    text-align: left;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+  

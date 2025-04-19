@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { googleLogout } from "@react-oauth/google";
 import "./profile.css"; // Import dedicated profile styles
+import Footer from "./Footer";
 
 function Profile({ user, setUser }) {
     const [isEditing, setIsEditing] = useState(false);
@@ -43,6 +44,7 @@ function Profile({ user, setUser }) {
     };
 
     return (
+        <>
         <div className="profile-container">
             <h2 className="profile-title">My Profile</h2>
             
@@ -105,6 +107,8 @@ function Profile({ user, setUser }) {
                 </div>
             )}
         </div>
+        <Footer />
+        </>
     );
 }
 
